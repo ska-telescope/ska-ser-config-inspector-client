@@ -21,8 +21,17 @@ include:
   - project: 'ska-telescope/templates-repository'
     file : 'gitlab-ci/includes/release.gitlab-ci.yml'
   # Python
+  # Lint is not used because this is a repo with generated code.
+  # Build stage
   - project: 'ska-telescope/templates-repository'
-    file : 'gitlab-ci/includes/python.gitlab-ci.yml'
-  # Docs
+    file: gitlab-ci/includes/python-build.gitlab-ci.yml
+  # Test stage
   - project: 'ska-telescope/templates-repository'
-    file: gitlab-ci/includes/docs.gitlab-ci.yml
+    file: gitlab-ci/includes/python-test.gitlab-ci.yml
+  # Scan stage
+  - project: 'ska-telescope/templates-repository'
+    file: gitlab-ci/includes/python-scan.gitlab-ci.yml
+  # Publish stage
+  - project: 'ska-telescope/templates-repository'
+    file: gitlab-ci/includes/python-publish.gitlab-ci.yml
+
