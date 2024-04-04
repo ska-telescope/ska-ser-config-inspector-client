@@ -32,6 +32,3 @@ generate:
 	mv $(GENERATE_DIR)/docs docs
 	mv $(GENERATE_DIR)/README.md README.md 
 .PHONY: generate
-
-prepare: python-format python-lint
-.PHONY: prepare
