@@ -1,6 +1,5 @@
-# Chart for testing
-# K8S_CHART = umbrella
-# K8S_CHARTS = $(K8S_CHART)
+# Be generous, this is generated code
+PYTHON_LINE_LENGTH := 140
 
 ## The following should be standard includes
 # include core makefile targets for release management
@@ -13,7 +12,8 @@
 #
 include .make/python.mk
 
-GENERATE_DIR := build/generated
+BUILD_DIR := build
+GENERATE_DIR := $(BUILD_DIR)/generated
 
 generate:
 	docker run --rm \
@@ -24,12 +24,14 @@ generate:
 	--additional-properties=packageName=ska_ser_config_inspector_client,\
 	projectName=ska-ser-config-inspector-client,\
 	packageVersion=$(VERSION)
-	sudo chown -R $(USER) $(GENERATE_DIR)
+	sudo chown -R $(USER) $(BUILD_DIR)
 	rm -rf src tests docs
 	mkdir -p src
 	mv $(GENERATE_DIR)/ska_ser_config_inspector_client src/ska_ser_config_inspector_client
 	mv $(GENERATE_DIR)/test tests
 	mv $(GENERATE_DIR)/docs docs
 	mv $(GENERATE_DIR)/README.md README.md 
-	mv $(GENERATE_DIR)/pyproject.toml pyproject.toml
 .PHONY: generate
+
+prepare: python-format python-lint
+.PHONY: prepare
