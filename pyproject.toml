@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ska_ser_config_inspector_client"
-version = "0.1.0"
+version = "0.2.2"
 description = "config-inspector"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"
