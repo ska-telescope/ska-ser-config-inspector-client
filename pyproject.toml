@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "ska_ser_config_inspector_client"
+name = "ska-ser-config-inspector-client"
 version = "0.2.2"
-description = "config-inspector"
-authors = ["OpenAPI Generator Community <team@openapitools.org>"]
-license = "NoLicense"
+description = "Client library for Config Inspector API (CIA)."
+authors = ["ATLAS"]
+license = "BSD 3-Clause"
 readme = "README.md"
-repository = "https://github.com/GIT_USER_ID/GIT_REPO_ID"
 keywords = ["OpenAPI", "OpenAPI-Generator", "config-inspector"]
 include = ["ska_ser_config_inspector_client/py.typed"]
+packages = [{ include = "ska_ser_config_inspector_client", from = "src" }, { include = "tests" } ]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -19,57 +19,26 @@ typing-extensions = ">=4.7.1"
 
 [tool.poetry.dev-dependencies]
 pytest = ">=7.2.1"
-tox = ">=3.9.0"
-flake8 = ">=4.0.0"
 types-python-dateutil = ">=2.8.19.14"
-mypy = "1.4.1"
-
+build = "0.10.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^5.0.0"
 pytest-json-report = "^1.5.0"
 
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-[tool.pylint.'MESSAGES CONTROL']
-extension-pkg-whitelist = "pydantic"
+[[tool.poetry.source]]
+name = 'ska'
+url = 'https://artefact.skatelescope.org/repository/pypi-all/simple'
 
-[tool.mypy]
-files = [
-  "ska_ser_config_inspector_client",
-  #"test",  # auto-generated tests
-  "tests", # hand-written tests
+[tool.pytest.ini_options]
+addopts = "-p no:warnings"
+testpaths = [
+    "tests"
 ]
-# TODO: enable "strict" once all these individual checks are passing
-# strict = true
-
-# List from: https://mypy.readthedocs.io/en/stable/existing_code.html#introduce-stricter-options
-warn_unused_configs = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-
-## Getting these passing should be easy
-strict_equality = true
-strict_concatenate = true
-
-## Strongly recommend enabling this one as soon as you can
-check_untyped_defs = true
-
-## These shouldn't be too much additional work, but may be tricky to
-## get passing if you use a lot of untyped libraries
-disallow_subclassing_any = true
-disallow_untyped_decorators = true
-disallow_any_generics = true
-
-### These next few are various gradations of forcing use of type annotations
-#disallow_untyped_calls = true
-#disallow_incomplete_defs = true
-#disallow_untyped_defs = true
-#
-### This one isn't too hard to get passing, but return on investment is lower
-#no_implicit_reexport = true
-#
-### This one can be tricky to get passing if you use a lot of untyped libraries
-#warn_return_any = true
+log_cli_level = "INFO"
+log_cli = "False"
+junit_family="xunit2"
