@@ -14,11 +14,14 @@ include .make/python.mk
 
 BUILD_DIR := build
 GENERATE_DIR := $(BUILD_DIR)/generated
+SCHEMA_URL := https://gitlab.com/ska-telescope/ska-ser-config-inspector/-/raw/main/openapi.json
+SCHEMA_FILE := $(BUILD_DIR)/ska-ser-config-inspector-openapi.json
 
 generate:
+	wget --quiet -O $(SCHEMA_FILE) $(SCHEMA_URL)
 	docker run --rm \
 	-v $(PWD):/local openapitools/openapi-generator-cli generate \
-    -i /local/ska-ser-config-inspector-openapi.json \
+    -i /local/$(SCHEMA_FILE) \
     -g python \
     -o /local/$(GENERATE_DIR) \
 	--additional-properties=packageName=ska_ser_config_inspector_client,\
