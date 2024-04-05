@@ -1,0 +1,7 @@
+# flake8: noqa
+
+# import apis into api package
+from ska_ser_config_inspector_client.api.charts_and_release_data_api import ChartsAndReleaseDataApi
+from ska_ser_config_inspector_client.api.tango_devices_and_their_deployment_status_api import TangoDevicesAndTheirDeploymentStatusApi
+from ska_ser_config_inspector_client.api.control_api import ControlApi
+

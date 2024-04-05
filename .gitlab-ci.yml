@@ -1,0 +1,37 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - lint
+  - build
+  - test
+  - deploy
+  - scan
+  - publish
+  - pages
+
+include:
+  # Helm Charts
+  - project: "ska-telescope/templates-repository"
+    file: "gitlab-ci/includes/helm-chart.gitlab-ci.yml"
+  # .post step finalisers eg: badges
+  - project: "ska-telescope/templates-repository"
+    file: "gitlab-ci/includes/finaliser.gitlab-ci.yml"
+  # Release Management
+  - project: 'ska-telescope/templates-repository'
+    file : 'gitlab-ci/includes/release.gitlab-ci.yml'
+  # Python
+  # Lint is not used because this is a repo with generated code.
+  # Build stage
+  - project: 'ska-telescope/templates-repository'
+    file: gitlab-ci/includes/python-build.gitlab-ci.yml
+  # Test stage
+  - project: 'ska-telescope/templates-repository'
+    file: gitlab-ci/includes/python-test.gitlab-ci.yml
+  # Scan stage
+  - project: 'ska-telescope/templates-repository'
+    file: gitlab-ci/includes/python-scan.gitlab-ci.yml
+  # Publish stage
+  - project: 'ska-telescope/templates-repository'
+    file: gitlab-ci/includes/python-publish.gitlab-ci.yml
+
