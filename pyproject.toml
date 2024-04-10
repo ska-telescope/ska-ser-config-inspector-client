@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ska-ser-config-inspector-client"
-version = "0.2.2"
+version = "0.2.3"
 description = "Client library for Config Inspector API (CIA)."
 authors = ["ATLAS"]
 license = "BSD 3-Clause"
