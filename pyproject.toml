@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ska-ser-config-inspector-client"
-version = "0.2.2"
+version = "0.2.3"
 description = "Client library for Config Inspector API (CIA)."
 authors = ["ATLAS"]
 license = "BSD 3-Clause"
@@ -32,7 +32,11 @@ build-backend = "poetry.core.masonry.api"
 
 [[tool.poetry.source]]
 name = 'ska'
-url = 'https://artefact.skatelescope.org/repository/pypi-all/simple'
+url = 'https://artefact.skao.int/repository/pypi-all/simple'
+
+[[tool.poetry.source]]
+name = "PyPI-public"
+url = 'https://pypi.org/simple'
 
 [tool.pytest.ini_options]
 addopts = "-p no:warnings"
